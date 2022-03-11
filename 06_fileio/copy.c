@@ -42,9 +42,9 @@ int main(int argc, char **argv)
 		return -1;
 	}
 
-    while(len == read(fd_old, buf, sizeof(buf)))
+    while((len = read(fd_old, buf, sizeof(buf))) > 0)
     {
-        if(len != write(fd_new, buf, sizeof(buf)))
+        if(len != write(fd_new, buf, len))
         {
 			printf("can not write %s\n", argv[2]);
 			return -1;
